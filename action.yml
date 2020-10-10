@@ -26,6 +26,10 @@ inputs:
     description: "Additional flags to be passed to the git push command. Could be used to force push"
     required: false
     default: ""
+  deploy-sha:
+    description: "The SHA ref to push. If not supplied, $GITHUB_SHA is used"
+    required: false
+    default: ${{ github.sha }}
 runs:
   using: "docker"
   image: "Dockerfile"
@@ -36,3 +40,4 @@ runs:
     - ${{ inputs.app-name }}
     - ${{ inputs.remote-branch }}
     - ${{ inputs.git-push-flags }}
+    - ${{ inputs.deploy-sha }}
